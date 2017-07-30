@@ -2,15 +2,36 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="org.ssm.controller"/>
     <mvc:default-servlet-handler/>
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven/><!--默认装配-->
     <bean id = "ViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    <!--使用AnnotationFormtterFactory格式化数据时，下面的自定义类型转换器需要注掉，否则起冲突-->
+    <!--即代码中关于Format的数据格式化，就使用默认的装配，就是第10行代码-->
+    <!--&lt;!&ndash;装配自定义的类型转换器&ndash;&gt;-->
+    <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
+    <!--&lt;!&ndash;自定义的类型转换器&ndash;&gt;-->
+    <!--<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">-->
+        <!--<property name="converters">-->
+            <!--<list>-->
+                <!--<bean class="org.ssm.converter.StringToDataConverter"-->
+                      <!--p:datePattern="yyyy-MM-dd"></bean>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;通过AnnotationMethodHandlerAdapter装配自定义编辑器&ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+        <!--<property name="webBindingInitializer">-->
+            <!--<bean class="org.ssm.binding.DateBindingInitializer"/>-->
+        <!--</property>-->
+    <!--</bean>-->
+
 </beans>

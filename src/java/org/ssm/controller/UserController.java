@@ -5,13 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.ssm.Validator.UserValidator;
+import org.ssm.converter.DateEditor;
 import org.ssm.until.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,9 +23,10 @@ public class UserController {
     private static List<User> userList;
 
     @InitBinder
-    public void initBinder(DataBinder binder){
+    public void initBinder(DataBinder binder, WebDataBinder binder1){
         //设置验证的类为UserValidator
         binder.setValidator(new UserValidator());
+        binder.registerCustomEditor(Date.class, new DateEditor());
     }
 
     //注册判断，如果errors中有错，则返回注册页面重新注册，否则正常提交

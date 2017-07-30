@@ -33,6 +33,10 @@
                 <td><form:input path="age"/></td>
             </tr>
             <tr>
+                <td>生&nbsp;日:</td>
+                <td><form:input path="birthday"/></td>
+            </tr>
+            <tr>
                 <td><input type="submit" value="提交"></td>
             </tr>
         </table>
