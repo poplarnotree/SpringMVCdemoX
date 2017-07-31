@@ -14,14 +14,7 @@
     <title>Title</title>
 </head>
 <body>
-用户登录
-<hr>
-    <h3>欢迎${requestScope.user.username}</h3>
-    <h3>你的账号:${requestScope.user.loginname}</h3>
-    <h3>你的密码:${requestScope.user.password}</h3>
-    <h3>你的年龄:${requestScope.user.age}</h3>
-    <h3>你的生日:<fmt:formatDate value="${requestScope.user.birthday}" pattern="yyyy年MM月dd日"/> </h3>
-<hr>
+
 数据格式化/Format
 <hr>
     <form:form modelAttribute="format" method="post" action="">

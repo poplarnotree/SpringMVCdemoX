@@ -1,5 +1,7 @@
 package org.ssm.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.DataBinder;
@@ -19,6 +21,8 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
+
     //静态List<User>集合，代替数据库用来保存用户信息
     private static List<User> userList;
 
@@ -32,7 +36,7 @@ public class UserController {
     //注册判断，如果errors中有错，则返回注册页面重新注册，否则正常提交
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(@Validated User user, Errors errors){
-
+        //如果errors中有错误信息，则跳转到login
         if(errors.hasFieldErrors()) {
             System.out.println(user.getLoginname());
             return "register";
@@ -46,7 +50,9 @@ public class UserController {
     //登录操作
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(@Validated User user, Errors errors, Model model){
-        if(errors.hasFieldErrors()) {
+
+        //如果errors中有错误信息，则跳转到login
+        if(errors.hasErrors()) {
             System.out.println(user.getLoginname());
             return "login";
         }
@@ -59,7 +65,7 @@ public class UserController {
                 System.out.println("用户输入的loginname="+user.getLoginname()+",password="+user.getPassword());
                 System.out.println("数据库中的loginname="+u.getLoginname()+",password="+u.getPassword());
                 model.addAttribute("user",u);
-                return "success";
+                return "welcome";
             }
         }
         return "login";

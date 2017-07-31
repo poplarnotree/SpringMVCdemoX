@@ -10,9 +10,11 @@ public class DateEditor extends PropertyEditorSupport {
     public void setAsText(String text) throws IllegalArgumentException{
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
+            System.out.println("进行日期转换");
             Date date = dateFormat.parse(text);
             setValue(date);
         }catch (ParseException e){
+            System.out.println("日期转换失败");
             e.printStackTrace();
         }
     }
