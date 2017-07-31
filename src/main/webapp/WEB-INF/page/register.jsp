@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form:form modelAttribute="user" method="post" action="register">
+    <form:form modelAttribute="user" method="post" action="register1">
         <table>
             <tr>
                 <td>登录名:</td>
@@ -27,14 +27,27 @@
             <tr>
                 <td>真实姓名:</td>
                 <td><form:input path="username"/></td>
+                <td><form:errors path="username" cssStyle="color:red;"/> </td>
             </tr>
             <tr>
                 <td>年&nbsp;龄:</td>
                 <td><form:input path="age"/></td>
+                <td><form:errors path="age" cssStyle="color: red"/> </td>
+            </tr>
+            <tr>
+                <td>邮&nbsp;箱:</td>
+                <td><form:input path="email"/></td>
+                <td><form:errors path="email" cssStyle="color: red"/> </td>
             </tr>
             <tr>
                 <td>生&nbsp;日:</td>
                 <td><form:input path="birthday"/></td>
+                <td><form:errors path="birthday" cssStyle="color: red"/> </td>
+            </tr>
+            <tr>
+                <td>电话:</td>
+                <td><form:input path="phone"/></td>
+                <td><form:errors path="phone" cssStyle="color: red"/> </td>
             </tr>
             <tr>
                 <td><input type="submit" value="提交"></td>
